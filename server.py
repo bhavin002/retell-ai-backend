@@ -1,4 +1,5 @@
 import json
+import uvicorn
 import os
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
@@ -134,3 +135,6 @@ async def register_call(Item: Item):
     except Exception as err:
         print(f"Error in register_call: {err}")
         return JSONResponse(status_code=500, content={"message": "Internal Server Error"})
+    
+if __name__ == '__main__':
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
